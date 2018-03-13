@@ -33,6 +33,7 @@
     <module name="stabilization" type="int_quat"/>
     <module name="ahrs"          type="float_mlkf"/>
     <module name="ins" type="extended"/>
+    <module name="sys_id_chirp"/>
     
     <module name="geo_mag"/>
     <module name="air_data"/>
