@@ -30,6 +30,9 @@
       <message name="CHIRP"                  period="1"/>
       <message name="DELFTACOPTER_FILTER_LOGGING" period="0.5"/>
       <message name="DOUBLET"                period="1"/>      
+      <message name="DC_CONTROLLER"          period="1"/>
+      <message name="DC_OBSERVER"            period="1"/>
+      <message name="DC_CONT_SETTINGS"       period="1"/>      
     </mode>
 
     <mode name="ppm">
@@ -167,6 +170,9 @@
       <message name="MOTOR"                  period="0.02"/>
       <message name="DELFTACOPTER_FILTER_LOGGING" period="0.005"/>
       <message name="INS"                    period="0.1"/>
+      <message name="DC_CONTROLLER"          period="0.005"/>
+      <message name="DC_OBSERVER"            period="0.005"/>
+      <message name="DC_CONT_SETTINGS"       period="0.5"/>
     </mode>
   </process>
 
