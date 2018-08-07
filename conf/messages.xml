@@ -747,7 +747,17 @@
       <field name="used" type="uint32" unit="bytes">Accumulated number of bytes written by the logger</field>
     </message>
 
-    <!-- 93 is free -->
+    <message name="DC_CONTROLLER" id="93">
+      <field name="controller_type" type="uint8" values="OLD_RATE|NEW_RATE|OLD_ATT|NEW_ATT">Currently active controller</field>
+      <field name="matrix_cont" type="uint16">Controller matrix from system_matrix.c</field>
+      <field name="ref_p" type="float" unit="rad/s">Reference roll rate</field>
+      <field name="ref_q" type="float" unit="rad/s">Reference pitch rate</field>
+      <field name="meas_p" type="float" unit="rad/s">Measured roll rate</field>
+      <field name="meas_q" type="float" unit="rad/s">Measured pitch rate</field>
+      <field name="err_x" type="float" unit="rad">Angle error x-axis</field>
+      <field name="err_y" type="float" unit="rad">Angle error y-axis</field>
+      <field name="err_z" type="float" unit="rad">Angle error z-axis</field>
+    </message>
 
     <message name="MOTOR_BENCH_STATUS" id="94">
       <field name="time_ticks" type="uint32"/>
@@ -760,7 +770,19 @@
       <field name="mode" type="uint8"/>
     </message>
 
-    <!-- 95 is free -->
+    <message name="DC_OBSERVER" id="95">
+      <field name="matrix_obsv" type="uint16">Observer matrix from system_matrix.c</field>
+      <field name="delt_x" type="float">Previous roll command [-1, 1]</field>
+      <field name="delt_y" type="float">Previous pitch command [-1, 1]</field>
+      <field name="delt_e" type="float">Previous elevator command [-1, 1]</field>
+      <field name="meas_p" type="float" unit="rad/s">p measured unfiltered</field>
+      <field name="meas_q" type="float" unit="rad/s">q measured unfiltered</field>
+      <field name="obsv_p" type="float" unit="rad/s">p observer estimate</field>
+      <field name="obsv_q" type="float" unit="rad/s">q observer estimate</field>
+      <field name="obsv_a" type="float" unit="rad">a observer estimate</field>
+      <field name="obsv_b" type="float" unit="rad">b observer estimate</field>
+      <field name="dt_observer" type="float" unit="s">Time between two observer propagations [-1, 1]</field>
+    </message>
 
     <message name="HIH_STATUS" id="96">
       <field name="humid" type="uint16"/>
@@ -1358,8 +1380,12 @@
       <field name="comp_id" type="uint8" values="NONE|GENERIC|IR|ICQ|ICE|FC|DCM|FINV|MLKF|GX3|CHIMU|VN"/>
     </message>
 
-    <!-- 158 is free -->
-
+    <message name="DC_CONT_SETTINGS" id="158">
+      <field name="g_factor" type="float"/>
+      <field name="K_phi" type="float"/>
+      <field name="K_theta" type="float"/>
+    </message>
+    
     <message name="ROTORCRAFT_NAV_STATUS" id="159">
       <field name="block_time" type="uint16" unit="s"/>
       <field name="stage_time" type="uint16" unit="s"/>
