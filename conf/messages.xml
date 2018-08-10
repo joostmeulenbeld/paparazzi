@@ -1374,7 +1374,12 @@
       <field name="comp_id" type="uint8" values="NONE|GENERIC|IR|ICQ|ICE|FC|DCM|FINV|MLKF|GX3|CHIMU|VN"/>
     </message>
 
-    <!-- 158 is free -->
+    <message name="DOUBLET"  id="158">
+      <field name="active"  type="uint8"/>
+      <field name="start_time" type="float"/>
+      <field name="time_since_start" type="float"/>
+      <field name="current_value" type="float"/>
+    </message>
 
     <message name="ROTORCRAFT_NAV_STATUS" id="159">
       <field name="block_time" type="uint16" unit="s"/>
