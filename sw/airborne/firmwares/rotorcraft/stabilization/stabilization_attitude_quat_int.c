@@ -233,7 +233,9 @@ static void attitude_run_fb(int32_t fb_commands[], struct Int32AttitudeGains *ga
 
 void stabilization_attitude_run(bool enable_integrator)
 {
-  bool state_feedback_active = false; // radio_control.values[4] > -4500 && radio_control.values[4] < 4500; // ap mode center position
+  bool state_feedback_active = radio_control.values[4] > -4500 && radio_control.values[4] < 4500; // ap mode center position
+
+  sys_id_doublet_add_attitude(&stab_att_sp_quat);
 
   /*
    * Update reference
