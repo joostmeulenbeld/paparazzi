@@ -21,8 +21,8 @@
 
   <init fun="delftacopter_controller_init()"/>
   <makefile>
-      <define name="observer_DC2_6S1P_cmsg_m50"/> <!--Delftacopter 2 4500mAh observer poles -50 -->
-      <define name="controller_DC2_6S1P_cmsg_lqr_5"/> <!--Delftacopter 2 4500mAh controller poles -0.1 -->
+      <define name="observer_DC3_6S6P_2400RPM_dccmsg_m50"/>
+      <define name="controller_DC3_6S6P_2400RPM_dccmsg_lqr_20"/>
       <define name="DC_STATE_FEEDBACK"/>
       <file name="system_matrix.c"/>
       <file name="state_space.c"/>
