@@ -38,6 +38,8 @@
       <message name="DC_CONTROLLER"          period="0.5"/>
       <message name="DC_OBSERVER"            period="0.5"/>
       <message name="DC_CONT_SETTINGS"       period="0.5"/>      
+      <message name="ROTORCRAFT_CMD"         period="0.5"/>      
+      <message name="DOUBLET"                period="0.5"/>      
     </mode>
 
     <mode name="ppm">
@@ -161,6 +163,7 @@
     <mode name="default">
       <message name="AUTOPILOT_VERSION"      period="11.1"/>
       <message name="GPS"                    period="20"/>
+      <message name="DOUBLET"                period="0.2"/>
       <message name="ROTORCRAFT_STATUS"      period="1.2"/>
       <message name="DL_VALUE"               period="0.5"/>
       <message name="IMU_GYRO_SCALED"        period=".005"/>
