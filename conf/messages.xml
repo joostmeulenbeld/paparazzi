@@ -1385,7 +1385,7 @@
       <field name="K_phi" type="float"/>
       <field name="K_theta" type="float"/>
     </message>
-    
+
     <message name="ROTORCRAFT_NAV_STATUS" id="159">
       <field name="block_time" type="uint16" unit="s"/>
       <field name="stage_time" type="uint16" unit="s"/>
