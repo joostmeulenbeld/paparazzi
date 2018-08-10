@@ -56,6 +56,14 @@
 static abi_event rpm_ev;
 static void rpm_cb(uint8_t sender_id, uint16_t *rpm, uint8_t num_act);
 
+float throttle_curve_rpm_sp = 0;
+void throttle_curve_set_rpm_sp(uint16_t rpm_sp_in) {
+  throttle_curve_rpm_sp = rpm_sp_in;
+  for (uint8_t i = 0; i < throttle_curve.curves[1].nb_points; i++) {
+    throttle_curve.curves[1].rpm[i] = rpm_sp_in;
+  }
+}
+
 /* Initialize the throttle curves from the airframe file */
 struct throttle_curve_t throttle_curve = {
   .nb_curves = THROTTLE_CURVES_NB,
@@ -94,6 +102,7 @@ void throttle_curve_init(void)
 #if PERIODIC_TELEMETRY
   register_periodic_telemetry(DefaultPeriodic, PPRZ_MSG_ID_THROTTLE_CURVE, throttle_curve_send_telem);
 #endif
+  throttle_curve_rpm_sp = throttle_curve.curves[1].rpm[0];
 }
 
 /**
