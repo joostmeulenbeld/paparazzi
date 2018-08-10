@@ -190,7 +190,7 @@ void stabilization_rate_enter(void)
 
 void stabilization_rate_run(bool in_flight)
 {
-  bool state_feedback_active = false; //radio_control.values[4] < -4500; // ap mode center position
+  bool state_feedback_active = radio_control.values[4] < -4500; // ap mode stick towards pilot is new controller
 
   /* compute feed-back command */
   struct FloatRates _error;
