@@ -42,7 +42,7 @@ MCU   = cortex-m4
 else
 MCU   = cortex-m3
 endif
-OPT ?= s
+OPT ?= 0
 # Slightly bigger .elf files but gains the ability to decode macros
 DEBUG_FLAGS ?= -ggdb3
 
