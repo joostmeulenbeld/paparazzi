@@ -48,8 +48,8 @@
 /** 
  * Offsets of inputs
  */
-#define DC_SWASH_OFFSET_X -0.015
-#define DC_SWASH_OFFSET_Y 0.04
+#define DC_SWASH_OFFSET_X -0.0229
+#define DC_SWASH_OFFSET_Y -0.0349
 
 /** Make a pointer to a matrix of _rows lines
  * @param _ptr The pointer which will be pointing
