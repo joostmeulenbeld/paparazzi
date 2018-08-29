@@ -26,10 +26,6 @@
 
 #include "delftacopter_observer.h"
 
-float* A_obsv_hover[OBSERVER_N_STATES];
-float* B_obsv_hover[OBSERVER_N_STATES];
-float* C_obsv_hover[OBSERVER_N_OUTPUTS];
-
 // State-space temporary computation vectors
 float _obsvx[OBSERVER_N_STATES][1];
 float _obsvu[OBSERVER_N_STATES][1];
@@ -78,7 +74,7 @@ float controller_error_quat_z = 0;
 
 static void send_DC_OBSERVER(struct transport_tx *trans, struct link_device *dev) {
   pprz_msg_send_DC_OBSERVER(trans, dev, AC_ID,
-    &observer_matrix_id, // observer matrix
+    &current_observer_setting, // observer matrix
     &delftacopter_observer.measured_u[0][0], // delt_x
     &delftacopter_observer.measured_u[1][0], // delt_y
     &delftacopter_observer.measured_u[2][0], // delt_e
@@ -94,10 +90,6 @@ static void send_DC_OBSERVER(struct transport_tx *trans, struct link_device *dev
 void delftacopter_observer_init(void) {
   delftacopter_observer.phase = delftacopter_hover;
   delftacopter_observer.ss = state_space_init(OBSERVER_N_STATES, OBSERVER_N_INPUTS, OBSERVER_N_OUTPUTS, A_obsv_hover, B_obsv_hover, C_obsv_hover, obsvx, obsvu, obsvy, xdx, xdu, ydx);
-
-  INIT_MATRIX_PTR(A_obsv_hover, _A_obsv_hover, OBSERVER_N_STATES)
-  INIT_MATRIX_PTR(B_obsv_hover, _B_obsv_hover, OBSERVER_N_STATES)
-  INIT_MATRIX_PTR(C_obsv_hover, _C_obsv_hover, OBSERVER_N_OUTPUTS)
 
   INIT_MATRIX_PTR(obsvx, _obsvx, OBSERVER_N_STATES);
   INIT_MATRIX_PTR(obsvu, _obsvu, OBSERVER_N_STATES);

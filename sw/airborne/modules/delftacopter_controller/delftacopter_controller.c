@@ -39,8 +39,6 @@ float _codx[SYSTEM_N_INPUTS][1]; // controller output due to state; temporary ma
 float _codu[SYSTEM_N_INPUTS][1]; // controller output due to reference; temporary matrix
 
 // Pointers to above matrices so they can be used in pprz_algebra_float functions
-float* controller_K[SYSTEM_N_INPUTS];
-float* controller_g[SYSTEM_N_INPUTS];
 float* controller_ref[SYSTEM_N_OUTPUTS];
 float* controller_output[SYSTEM_N_INPUTS];
 int32_t* controller_output_pprz[SYSTEM_N_INPUTS];
@@ -55,7 +53,7 @@ float k_theta_dc = 2;
 static void send_DC_CONTROLLER(struct transport_tx *trans, struct link_device *dev) {
   pprz_msg_send_DC_CONTROLLER(trans, dev, AC_ID,
     &current_controller_active,               // controller_type 
-    &controller_matrix_id,                    // matrix_cont
+    &current_controller_setting,                    // matrix_cont
     &controller_ref[0][0],                    // ref_p
     &controller_ref[1][0],                    // ref_q
     &delftacopter_observer.measured_y[0][0],  // meas_p
@@ -75,8 +73,6 @@ static void send_DC_CONT_SETTINGS(struct transport_tx *trans, struct link_device
 void delftacopter_controller_init(void) {
   delftacopter_observer_init();
 
-  INIT_MATRIX_PTR(controller_K, _controller_K, SYSTEM_N_INPUTS);
-  INIT_MATRIX_PTR(controller_g, _controller_g, SYSTEM_N_INPUTS);
   INIT_MATRIX_PTR(controller_ref, _controller_ref, SYSTEM_N_OUTPUTS);
   INIT_MATRIX_PTR(controller_output, _controller_output, SYSTEM_N_INPUTS);
   INIT_MATRIX_PTR(controller_output_pprz, _controller_output_pprz, SYSTEM_N_INPUTS);

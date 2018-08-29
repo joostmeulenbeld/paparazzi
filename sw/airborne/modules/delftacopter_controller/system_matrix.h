@@ -37,29 +37,40 @@
  *                      states [p, q, a, b]
  *                      outputs [p, q, a, b] (all states)
  */
-#ifdef DC_STATE_FEEDBACK
 #define SYSTEM_N_INPUTS 3
 #define SYSTEM_N_OUTPUTS 2
 #define OBSERVER_N_STATES 6
-#define CONTROLLER_N_STATES OBSERVER_N_STATES
 #define OBSERVER_N_OUTPUTS 4
+#ifdef DC_STATE_FEEDBACK
+#define CONTROLLER_N_STATES OBSERVER_N_STATES
 #endif
 #ifdef DC_OUTPUT_FEEDBACK
-#define SYSTEM_N_INPUTS 3
-#define SYSTEM_N_OUTPUTS 2
-#define OBSERVER_N_STATES 6
 #define CONTROLLER_N_STATES SYSTEM_N_OUTPUTS
-#define OBSERVER_N_OUTPUTS 4
 #endif
 #define OBSERVER_N_INPUTS SYSTEM_N_INPUTS + SYSTEM_N_OUTPUTS
 
-extern float _A_obsv_hover[][OBSERVER_N_STATES];
-extern float _B_obsv_hover[][OBSERVER_N_INPUTS];
-extern float _C_obsv_hover[][OBSERVER_N_STATES];
-extern float _controller_K[][CONTROLLER_N_STATES];
-extern float _controller_g[][SYSTEM_N_OUTPUTS];
+/** Make a pointer to a matrix of _rows lines
+ * @param _ptr The pointer which will be pointing
+ * @param _mat The matrix that is allocated on the stack
+ * @param _rows Number of rows of the matrix
+*/
+#define INIT_MATRIX_PTR(_ptr, _mat, _rows) \
+    for (int __i = 0; __i < _rows; __i++) { _ptr[__i] = &_mat[__i][0]; }
 
 extern uint16_t controller_matrix_id;
 extern uint16_t observer_matrix_id;
+
+extern float* A_obsv_hover[OBSERVER_N_STATES];
+extern float* B_obsv_hover[OBSERVER_N_STATES];
+extern float* C_obsv_hover[OBSERVER_N_OUTPUTS];
+extern float* controller_K[SYSTEM_N_INPUTS];
+extern float* controller_g[SYSTEM_N_INPUTS];
+
+extern uint16_t current_observer_setting;
+extern uint16_t current_controller_setting;
+
+void update_observer_matrices(uint16_t new_type);
+void update_controller_matrices(uint16_t new_type);
+void init_system_matrices(void);
 
 #endif // SYSTEM_MATRIX_H

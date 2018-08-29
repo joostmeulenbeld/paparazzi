@@ -11,6 +11,8 @@
         <dl_setting min="0" max="70" step="0.05" shortname="Aggressiveness" var="controller_g_factor" type="float" module="delftacopter_controller/delftacopter_controller"/>
         <dl_setting min="0" max="10" step="0.01" shortname="k_phi" var="k_phi_dc" type="float" module="delftacopter_controller/delftacopter_controller"/>
         <dl_setting min="0" max="10" step="0.01" shortname="k_theta" var="k_theta_dc" type="float" module="delftacopter_controller/delftacopter_controller"/>      
+				<dl_setting min="0" max="11" step="1" shortname="observer_setting" var="current_observer_setting" type="uint16" module="delftacopter_controller/system_matrix" values="DC3_6S6P_2800RPM_0_0001|DC3_6S6P_2800RPM_0_0002|DC3_6S6P_2800RPM_0_0005|DC3_6S6P_2800RPM_0_001|DC3_6S6P_2800RPM_0_002|DC3_6S6P_2800RPM_0_005|DC3_6S6P_2800RPM_0_01|DC3_6S6P_2800RPM_0_02|DC3_6S6P_2800RPM_0_05|DC3_6S6P_2800RPM_0_1|DC3_6S6P_2800RPM_0_2|DC3_6S6P_2800RPM_0_5"/>
+				<dl_setting min="0" max="17" step="1" shortname="controller_setting" var="current_controller_setting" type="uint16" module="delftacopter_controller/system_matrix" values="DC3_6S6P_2800RPM_lqr_500|DC3_6S6P_2800RPM_lqr_200|DC3_6S6P_2800RPM_lqr_100|DC3_6S6P_2800RPM_lqr_50|DC3_6S6P_2800RPM_lqr_20|DC3_6S6P_2800RPM_lqr_10|DC3_6S6P_2800RPM_lqr_5|DC3_6S6P_2800RPM_lqr_2|DC3_6S6P_2800RPM_lqr_1|DC3_6S6P_2800RPM_lqr_output_500|DC3_6S6P_2800RPM_lqr_output_200|DC3_6S6P_2800RPM_lqr_output_100|DC3_6S6P_2800RPM_lqr_output_50|DC3_6S6P_2800RPM_lqr_output_20|DC3_6S6P_2800RPM_lqr_output_10|DC3_6S6P_2800RPM_lqr_output_5|DC3_6S6P_2800RPM_lqr_output_2|DC3_6S6P_2800RPM_lqr_output_1"/>
       </dl_settings>
     </dl_settings>
   </settings>
@@ -21,9 +23,9 @@
 
   <init fun="delftacopter_controller_init()"/>
   <makefile>
-      <define name="observer_DC3_6S6P_2800RPM_0_0001"/> <!--Delftacopter 2 4500mAh observer poles -50 -->
-      <define name="controller_DC3_6S6P_2800RPM_lqr_50"/> <!--Delftacopter 2 4500mAh controller poles -0.1 -->
       <define name="DC_STATE_FEEDBACK"/>
+      <define name="OBSV_DEFAULT" value="0"/>
+      <define name="CONT_DEFAULT" value="0"/>
       <file name="system_matrix.c"/>
       <file name="state_space.c"/>
       <file name="delftacopter_observer.c"/>

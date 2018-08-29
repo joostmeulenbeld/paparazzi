@@ -51,14 +51,6 @@
 #define DC_SWASH_OFFSET_X -0.0229
 #define DC_SWASH_OFFSET_Y -0.0349
 
-/** Make a pointer to a matrix of _rows lines
- * @param _ptr The pointer which will be pointing
- * @param _mat The matrix that is allocated on the stack
- * @param _rows Number of rows of the matrix
-*/
-#define INIT_MATRIX_PTR(_ptr, _mat, _rows) \
-    for (int __i = 0; __i < _rows; __i++) { _ptr[__i] = &_mat[__i][0]; }
-
 enum delftacopter_flight_phase {delftacopter_hover=1, delftacopter_forward=2};
 
 struct delftacopter_observer_t {
