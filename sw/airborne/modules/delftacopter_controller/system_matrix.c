@@ -557,7 +557,7 @@ float* B_obsv_hover[OBSERVER_N_STATES];
 float* C_obsv_hover[OBSERVER_N_OUTPUTS];
 uint16_t max_observer_setting = 11;
 uint16_t current_observer_setting = OBSV_DEFAULT;
-void update_observer_matrices(uint16_t new_setting) {
+void system_matrix_update_observer_matrices(uint16_t new_setting) {
 	if (new_setting > max_observer_setting)
 		return;
 	switch (new_setting) {
@@ -629,7 +629,7 @@ void update_observer_matrices(uint16_t new_setting) {
 float* controller_K[SYSTEM_N_INPUTS];
 float* controller_g[SYSTEM_N_INPUTS];
 uint16_t current_controller_setting = CONT_DEFAULT;
-void update_controller_matrices(uint16_t new_setting) {
+void system_matrix_update_controller_matrices(uint16_t new_setting) {
 #ifdef DC_STATE_FEEDBACK
 	if (new_setting > 9)
 		return;
@@ -726,6 +726,6 @@ void update_controller_matrices(uint16_t new_setting) {
 #endif
 
 void init_system_matrices(void) {
-	update_observer_matrices(OBSV_DEFAULT);
-	update_controller_matrices(CONT_DEFAULT);
+	system_matrix_update_observer_matrices(OBSV_DEFAULT);
+	system_matrix_update_controller_matrices(CONT_DEFAULT);
 }

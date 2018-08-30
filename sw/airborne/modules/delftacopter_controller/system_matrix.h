@@ -69,8 +69,8 @@ extern float* controller_g[SYSTEM_N_INPUTS];
 extern uint16_t current_observer_setting;
 extern uint16_t current_controller_setting;
 
-void update_observer_matrices(uint16_t new_type);
-void update_controller_matrices(uint16_t new_type);
+void system_matrix_update_observer_matrices(uint16_t new_type);
+void system_matrix_update_controller_matrices(uint16_t new_type);
 void init_system_matrices(void);
 
 #endif // SYSTEM_MATRIX_H
